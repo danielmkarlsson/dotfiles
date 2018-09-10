@@ -1,0 +1,5 @@
+#!/bin/bash
+
+file=$HOME/Dropbox/MBP_local/scd/$(date +%F).scd
+
+tmux new-session -s sc nvim "$file" -c SClangStart
