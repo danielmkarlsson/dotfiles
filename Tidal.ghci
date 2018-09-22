@@ -13,12 +13,12 @@ import Sound.Tidal.MIDI.Stream
 import Sound.Tidal.MIDI.Synth
 import Sound.Tidal.MIDI.CC
 devs <- midiDevices
-m1 <- midiStream devs "IAC Driver Bus 1" 1 ccallController
-m2 <- midiStream devs "IAC Driver Bus 2" 1 ccallController
-m3 <- midiStream devs "IAC Driver Bus 3" 1 ccallController
-m4 <- midiStream devs "IAC Driver Bus 4" 1 ccallController
-m5 <- midiStream devs "IAC Driver Bus 5" 1 ccallController
-m6 <- midiStream devs "IAC Driver Bus 6" 1 ccallController
+m1 <- midiStream devs "IAC 1" 1 ccallController
+m2 <- midiStream devs "IAC 2" 1 ccallController
+m3 <- midiStream devs "IAC 3" 1 ccallController
+m4 <- midiStream devs "IAC 4" 1 ccallController
+m5 <- midiStream devs "IAC 5" 1 ccallController
+m6 <- midiStream devs "IAC 6" 1 ccallController
 m7 <- midiStream devs "QUAD-CAPTURE" 1 ccallController
 
 (cps, nudger, getNow) <- cpsUtils'
@@ -47,7 +47,7 @@ m7 <- midiStream devs "QUAD-CAPTURE" 1 ccallController
 
 let rep = discretise
 let bps x = cps (x/2)
-let hush = mapM_ ($ silence) [m1,m2,m3,m4,m5,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10]
+let hush = mapM_ ($ silence) [m1,m2,m3,m4,m5,m6,m7,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10]
 let solo = (>>) hush
 let wchoose values weights = choose $ concatMap (\x -> replicate (fst x) (snd x)) (zip values weights)
 
