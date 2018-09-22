@@ -13,7 +13,7 @@ import Sound.Tidal.MIDI.Stream
 import Sound.Tidal.MIDI.Synth
 import Sound.Tidal.MIDI.CC
 devs <- midiDevices
-m8 <- midiStream devs "IAC Driver Bus 1" 1 ccallController
+m1 <- midiStream devs "IAC Driver Bus 1" 1 ccallController
 m2 <- midiStream devs "IAC Driver Bus 2" 1 ccallController
 m3 <- midiStream devs "IAC Driver Bus 3" 1 ccallController
 m4 <- midiStream devs "IAC Driver Bus 4" 1 ccallController
