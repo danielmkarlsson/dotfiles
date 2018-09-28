@@ -1,0 +1,108 @@
+{
+    "HEARTBEAT_TIMEOUT": 999,
+    "IMAGE_ON_TERM": false,
+    "IMAGE_RESIZE_TO_FIT": true,
+    "THEME": "CUSTOM",
+    "ASCII_ART": false,
+    "HIDE_PROMPT": true,
+    "PREFIX": "#owner#place#me#keyword",
+    "SEARCH_TYPE": "mixed",
+    "SEARCH_MAX_RECORD": 50,
+    "HOME_TWEET_NUM": 50,
+    "RETWEETS_SHOW_NUM": 50,
+    "CONVERSATION_MAX": 99,
+    "QUOTE_FORMAT": "#comment https://twitter.com/#owner/status/#tid",
+    "THREAD_META_LEFT": "(#id) #clock",
+    "THREAD_META_RIGHT": "#clock (#id)",
+    "THREAD_MIN_WIDTH": 20,
+    "NOTIFY_FORMAT": "  #source_user #notify #clock",
+    "MESSAGES_DISPLAY": 50,
+    "TREND_MAX": 50,
+    "LIST_MAX": 50,
+    "ONLY_LIST": [],
+    "IGNORE_LIST": [],
+    "HISTORY_FILENAME": "completer.hist",
+    "IMAGE_SHIFT": 2,
+    "IMAGE_MAX_HEIGHT": 45,
+    "STREAM_DELAY": 0,
+    "USER_DOMAIN": "userstream.twitter.com",
+    "PUBLIC_DOMAIN": "stream.twitter.com",
+    "SITE_DOMAIN": "sitestream.twitter.com",
+    "FORMAT": {
+        "TWEET": {
+            "CLOCK_FORMAT": "%Y/%m/%d %H:%M:%S",
+            "DISPLAY": "\n  #name #nick #clock \n  #tweet"
+        },
+        "MESSAGE": {
+            "CLOCK_FORMAT": "%Y/%m/%d %H:%M:%S",
+            "DISPLAY": "\n  #sender_name #sender_nick #to #recipient_name #recipient_nick :\n  #clock message_id:#id\n  #message"
+        }
+    },
+    "POCKET_SUPPORT": false
+,
+    "DECORATED_NAME" : 255,
+    "CYCLE_COLOR" :[255],
+    "TWEET" : {
+        "mynick"          : 255,
+        "nick"            : 255,
+        "clock"           : 255,
+        "id"              : 255,
+        "client"          : 255,
+        "favorited"       : 255,
+        "retweet_count"   : 255,
+        "favorite_count"  : 255,
+        "rt"              : 255,
+        "link"            : 255,
+        "hashtag"         : 255,
+        "mytweet"         : 255,
+        "keyword"         : 255
+    },
+
+    "NOTIFICATION":{
+        "source_nick"   : 255,
+        "notify"        : 255,
+        "clock"         : 255
+    },
+
+    "MESSAGE" : {
+        "partner"       : 255,
+        "me"            : 255,
+        "partner_frame" : 255,
+        "me_frame"      : 255,
+        "sender"        : 255,
+        "recipient"     : 255,
+        "to"            : 255,
+        "clock"         : 255,
+        "id"            : 255
+    },
+
+    "PROFILE" : {
+        "statuses_count"    : 255,
+        "friends_count"     : 255,
+        "followers_count"   : 255,
+        "nick"              : 255,
+        "profile_image_url" : 255,
+        "description"       : 255,
+        "location"          : 255,
+        "url"               : 255,
+        "clock"             : 255
+    },
+
+    "TREND" : {
+        "url": 255
+    },
+
+    "CAL" : {
+        "days": 255,
+        "today": 255
+    },
+
+    "GROUP" : {
+        "name": 255,
+        "member": 255,
+        "subscriber": 255,
+        "mode": 255,
+        "description": 255,
+        "clock": 255
+    }
+}
