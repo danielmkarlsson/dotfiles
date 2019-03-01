@@ -1,7 +1,8 @@
 set guicursor=
 
 " ==============================================================================
-" {{{
+" {{ckest
+" {
 
 " let g:instant_markdown_autostart = 0
 
@@ -22,13 +23,14 @@ function! BuildComposer(info)
 endfunction
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 " util
 Plug 'munshkr/vim-tidal'
 Plug 'cohama/lexima.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'davidgranstrom/scnvim'
 
 " language
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
@@ -51,11 +53,11 @@ set directory^=$HOME/.vim/.swap//       " put all swap files in one place
 let mapleader="\<space>"                " set mapleader
 let maplocalleader=","
 set mouse=a                             " enable mouse
-set number
+set nonumber
 
 " editing
 set backspace=2                     " allow backspacing over indent, eol, and the start of an insert
-set virtualedit=all                 " be able to access all areas of the buffer
+set virtualedit=onemore             " get at those pesky endbits (previously all)
 set hidden                          " be able to hide modified buffers
 set complete-=i                     " where to look for auto-completion
 set clipboard+=unnamedplus          " yank to system-wide clipboard
@@ -68,7 +70,7 @@ set formatoptions+=rj               " auto insert comments from insert mode,
 
 " appearance
 " set fillchars=                    " remove the fillchars from folds and splits
-set listchars=tab:>-,trail:–,nbsp:• " custom list chars
+"set listchars=tab:>-,trail:‚Äì,nbsp:‚Ä¢ " custom list chars
 set nostartofline                   " keep the cursor at the current column when moving
 set scrolloff=4                     " keep a distance of from the cursor when scrolling
 set wrap                            " wrap words
@@ -107,15 +109,19 @@ set shiftround                      " round indent to multiples of 'shiftwidth'
 
 " colorscheme/appearance
 set background=dark
-colorscheme BlackestEverBlack
+colorscheme BlackestEverBlack2
 
 " use par to format text
 if executable("par")
     set formatprg=par\ -w80qr
 endif
 
-let &t_SI = "\<Esc>]50;CursorShape=4\x7"
-let &t_EI = "\<Esc>]50;CursorShape=4\x7"
+" let &t_SI = "\<Esc>]50;CursorShape=4\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=4\x7"
+
+augroup vimrc
+    autocmd!
+augroup END
 
 " Key mappings
 " ============
@@ -125,8 +131,12 @@ nnoremap j gj
 nnoremap k gk
 
 inoremap jk <esc>
-inoremap § <esc> 
+inoremap ¬ß <esc> 
 nnoremap <C-z> <nop>
+nnoremap Y y$
+
+" move a step to the right in insert mode
+inoremap <C-l> <C-o>l
 
 let maplocalleader=","
 
@@ -137,7 +147,7 @@ let maplocalleader=","
 " nmap <C-b> <Plug>TidalParagraphSend
 
 " be able to browse help
-nnoremap å ]
+nnoremap √• ]
 
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -171,32 +181,40 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
   inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 endif
 
+" single line
+nmap <C-s> <Plug>(scnvim-send-line)
+imap <C-s> <c-o><Plug>(scnvim-send-line)
+
 augroup mappings_scvim
     au!
 
-    au Filetype supercollider setlocal commentstring=//%s
-    au FileType supercollider setlocal ts=4 sts=4 sw=4
+    " au Filetype supercollider setlocal commentstring=//%s
+    " au FileType supercollider setlocal ts=4 sts=4 sw=4
 
-    au Filetype supercollider nmap <buffer> K :call SChelp(expand('<cword>'))<CR>
+    " au Filetype supercollider nmap <buffer> K :call SChelp(expand('<cword>'))<CR>
 
-    au Filetype supercollider nnoremap <buffer> <C-e> :call SClang_line()<CR>
-    au Filetype supercollider vnoremap <buffer> <C-e> :call SClang_line()<CR>
-    au Filetype supercollider inoremap <buffer> <C-e> :call SClang_line()<CR>a
+    " au Filetype supercollider nnoremap <buffer> <C-e> :call SClang_line()<CR>
+    " au Filetype supercollider vnoremap <buffer> <C-e> :call SClang_line()<CR>
+    " au Filetype supercollider inoremap <buffer> <C-e> <c-o>:call SClang_line()<CR>
 
-    au Filetype supercollider nnoremap <buffer> <C-b> :call SClang_block()<CR>
-    au Filetype supercollider inoremap <buffer> <C-b> :call SClang_block()<CR>a
+    " au Filetype supercollider nnoremap <buffer> <C-b> :call SClang_block()<CR>
+    " au Filetype supercollider inoremap <buffer> <C-b> <c-o>:call SClang_block()<CR>
 
-    au Filetype supercollider nnoremap <buffer> <F12> :call SClangHardstop()<CR>
-    au Filetype supercollider inoremap <buffer> <F12> :call SClangHardstop()<CR>a
+    " au Filetype supercollider nnoremap <buffer> <F12> :call SClangHardstop()<CR>
+    " au Filetype supercollider inoremap <buffer> <F12> <c-o>:call SClangHardstop()<CR>
 
-    au Filetype supercollider nnoremap <buffer> <leader>st :SClangStart<CR>
-    au Filetype supercollider nnoremap <leader>sk :SClangRecompile<CR>
-    au Filetype supercollider nnoremap <buffer>K :call SChelp(expand('<cword>'))<CR>
+    " au Filetype supercollider nnoremap <buffer> <leader>st :SClangStart<CR>
+    " au Filetype supercollider nnoremap <leader>sk :SClangRecompile<CR>
+    " au Filetype supercollider nnoremap <buffer>K :call SChelp(expand('<cword>'))<CR>
 
-    au Filetype supercollider inoremap <C-Tab> :call SCfindArgs()<CR>a
+    " au Filetype supercollider inoremap <C-a> <c-o>:call SCfindArgs()<CR>
+    " au Filetype supercollider inoremap <C-Tab> <c-o>:call SCfindArgs()<CR>
     " au Filetype supercollider nnoremap <C-Tab> :call SCfindArgs()<CR>
-    au Filetype supercollider nnoremap ; :call SCfindArgs()<CR>
-    au Filetype supercollider vnoremap <C-Tab> :call SCfindArgsFromSelection()<CR>
+    " au Filetype supercollider nnoremap ; :call SCfindArgs()<CR>
+    " au Filetype supercollider vnoremap <C-Tab> :call SCfindArgsFromSelection()<CR>
+
+    " au Filetype supercollider inoremap <C-p> <c-o>:call jobstart('sc-clear-screen')<cr>
+    " au Filetype supercollider nnoremap <C-p> :call jobstart('sc-clear-screen')<cr>
 augroup END
 
 " highlight NonText cterm=none ctermfg=0  " set NonText (empty line tildes) to black
@@ -218,3 +236,13 @@ augroup develop
 augroup END
 
 let g:scFlash = 1
+
+augroup vimrc
+    autocmd VimResized * redraw!
+augroup END
+
+
+command! InsertDate :r!date "+\%Y-\%m-\%d"<cr>
+inoremap <C-k> <c-o>:InsertDate<cr>
+
+command! StartUp :e ~/Library/Application\ Support/SuperCollider/startup.scd
