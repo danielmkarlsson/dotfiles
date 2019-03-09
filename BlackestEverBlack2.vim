@@ -1,6 +1,6 @@
 " Vim colorscheme template file
-" Hi, me and David edited this because it was pretty close the
-" original was:
+" Hi, me and David edited this because it was pretty close 
+" the original was:
 " Author: Gerardo Galindez <gerardo.galindez@gmail.com>
 " Maintainer: Gerardo Galindez <gerardo.galindez@gmail.com>
 " Notes: To check the meaning of the highlight groups, :help 'highlight'
@@ -37,15 +37,16 @@ let s:gray = { "gui": "#555555", "cterm": "8" }
 
 let s:bg = s:black
 let s:fg = s:white
+let s:visual = s:gray
 
 call s:h("Normal",   {"bg": s:bg, "fg": s:fg})
 call s:h("Noise",    {"bg": s:bg, "fg": s:fg})
 call s:h("Cursor",   {"bg": s:bg, "fg": s:fg})
-call s:h("Comment",  {"fg": s:gray, "gui": "italic"})
+call s:h("Comment",  {"fg": s:visual, "bg": s:bg})
 
 call s:h("Constant", {"bg": s:bg, "fg": s:fg})
 call s:h("LineNr",   {"bg": s:bg, "fg": s:fg})
-call s:h("CursorLineNR",   {"bg": s:bg, "fg": s:fg})
+call s:h("CursorLineNR", {"bg": s:bg, "fg": s:fg})
 
 " -----------------
 " - Number column -
@@ -75,7 +76,7 @@ call s:h("IncSearch",   {"bg": s:bg, "fg": s:fg})
 " - Prompt/Status -
 " -----------------
 call s:h("StatusLine",   {"bg": s:bg, "fg": s:fg})
-call s:h("StatusLineNC",   {"bg": s:bg, "fg": s:fg})
+call s:h("StatusLineNC",   {"bg": s:bg, "fg": s:bg})
 call s:h("WildMenu",   {"bg": s:bg, "fg": s:fg})
 call s:h("Question",   {"bg": s:bg, "fg": s:fg})
 call s:h("Title",   {"bg": s:bg, "fg": s:fg})
@@ -85,8 +86,8 @@ call s:h("MoreMsg",   {"bg": s:bg, "fg": s:fg})
 " --------------
 " - Visual aid -
 " --------------
-call s:h("MatchParen",   {"bg": s:bg, "fg": s:fg})
-call s:h("Visual",   {"bg": s:bg, "fg": s:fg})
+call s:h("MatchParen",   {"bg": s:visual, "fg": s:fg})
+call s:h("Visual",   {"bg": s:fg, "fg": s:bg})
 call s:h("VisualNOS",   {"bg": s:bg, "fg": s:fg})
 call s:h("NonText",   {"bg": s:bg, "fg": s:fg})
 call s:h("Todo",   {"bg": s:bg, "fg": s:fg})
@@ -159,7 +160,7 @@ call s:h("DiffText",   {"bg": s:bg, "fg": s:fg})
 " Completion menu
 " --------------------------------
 call s:h("Pmenu",   {"bg": s:bg, "fg": s:fg})
-call s:h("PmenuSel",   {"bg": s:bg, "fg": s:fg})
+call s:h("PmenuSel",   {"bg": s:fg, "fg": s:bg})
 call s:h("PmenuSbar",   {"bg": s:bg, "fg": s:fg})
 call s:h("PmenuThumb",   {"bg": s:bg, "fg": s:fg})
 
@@ -173,6 +174,5 @@ call s:h("SpellRare",   {"bg": s:bg, "fg": s:fg})
 "--------------------------------------------------------------------
 " Specific settings                                                 |
 "--------------------------------------------------------------------
-call s:h("",   {"bg": s:bg, "fg": s:fg})
-hi Normal term=NONE ctermfg=15 ctermbg=0 guifg=white guibg=black
-hi EndOfBuffer term=NONE ctermfg=bg ctermbg=bg guifg=bg guibg=bg
+
+call s:h("EndOfBuffer",  {"bg": s:bg, "fg": s:bg})
