@@ -35,7 +35,7 @@ Plug 'davidgranstrom/scnvim'
 " language
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 " Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug  'supercollider/scvim'
+" Plug  'supercollider/scvim'
 
 " color schemes
 Plug 'mhartington/oceanic-next'
