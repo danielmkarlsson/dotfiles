@@ -8,15 +8,14 @@ s.options.numOutputBusChannels = 2; // OUTPUT CHANNELS GO HERE
 s.recSampleFormat = "int24";
 s.options.numInputBusChannels = 2; // set to hardware input channel size, if necessary
 s.latency = 0.1;
+MIDIClient.init;
+m = MIDIOut.new(0); // Maybe yours is different?
+m.latency = 0; // Faster is better so fastest is bestest right?
 
-// boot the server and start SuperDirt
-
-s.waitForBoot {
-	~dirt = SuperDirt(2, s); // OUTPUT CHANNELS GO HERE ALSO DO NOT FORGET
-	~dirt.loadSoundFiles; // load samples (path containing a wildcard can be passed in)
-	s.sync; // wait for samples to be read
-	~dirt.start(57120, [0,0]);
-	// start listening on port 57120, create two orbits, each sending audio to channel 0.
-	// You can direct sounds to the orbits from tidal e.g. by: `# orbit "0 1 1"
+// scnvim
+if (\SCNvim.asClass.notNil) {
+    Server.default.doWhenBooted {
+        \SCNvim.asClass.updateStatusLine(1, 9670);
+    }
 };
 )
