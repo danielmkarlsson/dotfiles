@@ -1,26 +1,30 @@
-export PS1="\W \u_ \[$(tput sgr0)\]"
+export LC_ALL=en_US.UTF-8
+export PS1="\W t36s_ \[$(tput sgr0)\]"
 
-alias tv='cd ~/Dropbox/MBP_local/tidal && tidalvim'
-alias au='open -a audiomulch'
 alias dl='youtube-dl -o "~/Downloads/%(title)s.%(ext)s"'
+alias dl3='youtube-dl -x --audio-format=mp3 -o "~/Downloads/%(title)s.%(ext)s"' 
+alias dl4='youtube-dl -f mp4 -o "~/Downloads/%(title)s.%(ext)s"'
+alias au='open -a audiomulch'
 alias fzf='fzf --color bw'
 alias F='ls | fzf --preview="head -n 10 {}"'
-alias tw=t
 alias t=task
-alias m=mutt
 alias wee=weechat
 alias we='finger stockholm@graph.no'
 alias vim=nvim
-alias tw=rainbowstream
 alias br=brightness
 alias ..='cd ..'
-alias sc=~/bin/sc-start
 alias c="gcalcli agenda"
+alias l="ls -l"
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GIT_EDITOR="$VISUAL"
 
-export PATH=$HOME/bin:$HOME/.npm-global/bin:$PATH
+export PATH=$HOME/bin:$HOME/.npm-global/bin:$HOME/Library/Python/3.7/bin:$PATH
+
+export PYTHONPATH=$(python -c "import site; print(site.USER_SITE)"):$PYTHONPATH
+export PATH=$PATH:~/.local/bin
+
+FZF_DEFAULT_OPTS='--color=bw'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
