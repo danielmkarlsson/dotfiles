@@ -3,8 +3,8 @@ export PS1="\W t36s_ \[$(tput sgr0)\]"
 
 alias dl='youtube-dl -o "~/Downloads/%(title)s.%(ext)s"'
 alias dl3='youtube-dl -x --audio-format=mp3 -o "~/Downloads/%(title)s.%(ext)s"' 
+alias dlw='youtube-dl -x --audio-format=wav -o "~/Downloads/%(title)s.%(ext)s"' 
 alias dl4='youtube-dl -f mp4 -o "~/Downloads/%(title)s.%(ext)s"'
-alias au='open -a audiomulch'
 alias fzf='fzf --color bw'
 alias F='ls | fzf --preview="head -n 10 {}"'
 alias t=task
@@ -28,3 +28,4 @@ export PATH=$PATH:~/.local/bin
 FZF_DEFAULT_OPTS='--color=bw'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source /Users/danielmkarlsson/.ghcup/env
