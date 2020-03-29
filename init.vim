@@ -8,11 +8,12 @@ call plug#begin('~/.config/nvim/bundle')
 
 Plug 'SirVer/ultisnips'
 Plug 'Shougo/deoplete.nvim'
+Plug 'deoplete-plugins/deoplete-tag'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/calendar.vim'
 Plug 'xarthurx/taskwarrior.vim'
-Plug 'davidgranstrom/scnvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'davidgranstrom/scnvim'
 
 call plug#end()
 
@@ -189,14 +190,14 @@ nnoremap <leader>sb :call scnvim#sclang#send_silent('s.boot')<cr>
 " recompile the class library in scnvim w/ c+sk
 nnoremap <leader>sk :SCNvimRecompile<cr>
  
-" post window at the bottom
-let g:scnvim_postwin_orientation = 'h'
+" post window on the side or on the bottom
+let g:scnvim_postwin_orientation = 'v'
 
 " set this variable to browse SuperCollider documentation in nvim (requires `pandoc`)
 let g:scnvim_scdoc = 1
 
 " default is half the terminal size for vertical and a third for horizontal
-let g:scnvim_postwin_size = 1 
+let g:scnvim_postwin_size = 15 
 
 " path to the sclang executable
 " let g:scnvim_sclang_executable = '/Applications/SuperCollider-bleeds/SuperCollider.app'
@@ -229,3 +230,20 @@ command! StartUp :e ~/Library/Application\ Support/SuperCollider/startup.scd
 
 " gcal in vim
 let g:calendar_google_calendar = 1
+
+" log all yank operations with a timestamp and store the contents in a file
+function! s:write_yank_to_log() abort
+  let path = '/tmp/yank-log.txt'
+  let regcontents = get(v:event, 'regcontents', '')
+  let stamp = strftime('[%F %T]') " NOTE: formatting is OS specific
+  let data = []
+  for line in regcontents
+    call add(data, stamp . ' ' . line)
+  endfor
+  call writefile(data, path, 'a')
+endfunction
+
+augroup yank_log
+  autocmd!
+  autocmd TextYankPost * call s:write_yank_to_log()
+augroup END
