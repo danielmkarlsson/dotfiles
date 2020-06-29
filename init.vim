@@ -73,7 +73,12 @@ set clipboard+=unnamedplus          " yank to system-wide clipboard
 set autoread                        " reload buffers changed from the outside
 set completeopt-=preview            " don't display scratch buffer for completion
 set formatoptions+=rj               " auto insert comments from insert mode,
-                                    " remove comment leader when joining lines
+
+" paste last yanked item (over and over again)
+nnoremap gp "0p
+xnoremap gp "0p
+
+" remove comment leader when joining lines
 " appearance
 " set fillchars=                    " remove the fillchars from folds and splits
 "set listchars=tab:>-,trail:–,nbsp:• " custom list chars
