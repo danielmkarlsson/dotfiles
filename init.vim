@@ -6,22 +6,25 @@ syntax enable              " syntax highlighting
 " vim-plug
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'SirVer/ultisnips'
-Plug 'Shougo/deoplete.nvim'
+" Plug 'SirVer/ultisnips'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-tag'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/calendar.vim'
-Plug 'xarthurx/taskwarrior.vim'
-Plug 'davidgranstrom/scnvim'
+"Plug 'xarthurx/taskwarrior.vim'
+Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 
 call plug#end()
 
+" wrap supercollider post window
+" autocmd FileType scnvim setlocal wrap
+
 " get dem snips
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'scnvim-data']
+"let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'scnvim-data']
 
 " set path to deoplete
-set runtimepath+=~/.config/nvim/bundle/deoplete.nvim
+" set runtimepath+=~/.config/nvim/bundle/deoplete.nvim
 
 " snips get to autocomplete
 let g:deoplete#enable_at_startup = 1
@@ -33,7 +36,7 @@ function! s:set_sclang_statusline()
   setlocal stl+=%=
   setlocal stl+=%(%l,%c%)
   setlocal stl+=\ \|
-  setlocal stl+=%24.24{scnvim#statusline#server_status()}
+  setlocal stl+=%26.26{scnvim#statusline#server_status()}
 endfunction
 
 augroup scnvim_stl
@@ -43,20 +46,6 @@ augroup END
 
 " comment out stuff with this in scnvim
 autocmd FileType supercollider setlocal commentstring=//%s 
-
-" scnvim starts autoMagically when .scd files are opened in nvim
-let s:scnvim_running = v:false
-function! s:start_sclang() abort
-  if !s:scnvim_running
-    SCNvimStart
-    let s:scnvim_running = v:true
-  endif
-endfunction
-
-augroup scnvim_start
-  autocmd!
-  autocmd FileType supercollider call <SID>start_sclang()
-augroup END
 
 set directory^=$HOME/.vim/.swap//       " put all swap files in one place
 let mapleader="\<space>"                " set mapleader
@@ -73,15 +62,10 @@ set clipboard+=unnamedplus          " yank to system-wide clipboard
 set autoread                        " reload buffers changed from the outside
 set completeopt-=preview            " don't display scratch buffer for completion
 set formatoptions+=rj               " auto insert comments from insert mode,
-
-" paste last yanked item (over and over again)
-nnoremap gp "0p
-xnoremap gp "0p
-
-" remove comment leader when joining lines
+                                    " remove comment leader when joining lines
 " appearance
 " set fillchars=                    " remove the fillchars from folds and splits
-"set listchars=tab:>-,trail:–,nbsp:• " custom list chars
+" set listchars=tab:>-,trail:–,nbsp:• " custom list chars
 set nostartofline                   " keep the cursor at the current column when moving
 set scrolloff=4                     " keep a distance of from the cursor when scrolling
 set wrap                            " wrap words
@@ -115,6 +99,9 @@ set timeoutlen=1000                 " shorter timeout lenght for keystrokes
 set ttimeoutlen=50                  " make esc work faster
 set lazyredraw                      " don't redraw screen for macros
 
+" fzf
+let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+
 " indenting/formating
 set autoindent                      " indent even if we have no filetype rules
 set smarttab
@@ -125,6 +112,7 @@ set expandtab                       " use whitespace instead of tabs
 set shiftround                      " round indent to multiples of 'shiftwidth'
 
 " colorscheme/appearance
+" hi Normal guibg=NONE ctermbg=NONE
 set background=dark
 colorscheme BlackestEverBlack2
 
@@ -202,7 +190,10 @@ let g:scnvim_postwin_orientation = 'v'
 let g:scnvim_scdoc = 1
 
 " default is half the terminal size for vertical and a third for horizontal
-let g:scnvim_postwin_size = 15 
+let g:scnvim_postwin_size = 16 
+
+" remap hard stop
+" map <C-w> <plug>(scnvim-hard-stop)
 
 " path to the sclang executable
 " let g:scnvim_sclang_executable = '/Applications/SuperCollider-bleeds/SuperCollider.app'
