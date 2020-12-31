@@ -7,12 +7,13 @@ syntax enable              " syntax highlighting
 call plug#begin('~/.config/nvim/bundle')
 
 " Plug 'SirVer/ultisnips'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-tag'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'deoplete-plugins/deoplete-tag'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/calendar.vim'
 "Plug 'xarthurx/taskwarrior.vim'
+Plug 'jdhao/better-escape.vim'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 
 call plug#end()
@@ -27,7 +28,7 @@ call plug#end()
 " set runtimepath+=~/.config/nvim/bundle/deoplete.nvim
 
 " snips get to autocomplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " the statusline is made anew
 function! s:set_sclang_statusline()
@@ -47,7 +48,10 @@ augroup END
 " comment out stuff with this in scnvim
 autocmd FileType supercollider setlocal commentstring=//%s 
 
-set directory^=$HOME/.vim/.swap//       " put all swap files in one place
+" toggle colours in the post_window
+let g:scnvim_postwin_syntax_hl = 0
+
+" set directory^=$HOME/.vim/.swap//       " put all swap files in one place
 let mapleader="\<space>"                " set mapleader
 let maplocalleader=","
 set mouse=a                             " enable mouse
@@ -171,16 +175,16 @@ imap <C-s> <c-o><Plug>(scnvim-send-line)
 nmap <C-p> <Plug>(scnvim-postwindow-clear)
 imap <C-p> <c-o><Plug>(scnvim-postwindow-clear)
 
-" start scnvim w/ c+st
+" start scnvim w/ space+st
 nnoremap <leader>st :SCNvimStart<cr>
 
-" bring up the meter in scnvim w/ c+m
+" bring up the meter in scnvim w/ space+m
 nnoremap <leader>sm :call scnvim#sclang#send_silent('s.meter')<cr>
 
-" boot the server w/ c+b
+" boot the server w/ space+b
 nnoremap <leader>sb :call scnvim#sclang#send_silent('s.boot')<cr>
 
-" recompile the class library in scnvim w/ c+sk
+" recompile the class library in scnvim w/ space+sk
 nnoremap <leader>sk :SCNvimRecompile<cr>
  
 " post window on the side or on the bottom
@@ -219,8 +223,8 @@ nnoremap <silent><C-l> :3wincmd ><cr>
 nnoremap <silent><C-k> :3wincmd +<cr>
 nnoremap <silent><C-j> :3wincmd -<cr>
 
-command! InsertDate :r!date "+\%Y-\%m-\%d"<cr>
-inoremap <C-k> <c-o>:InsertDate<cr>
+" never enter Ex mode
+nnoremap Q <Nop>
 
 command! StartUp :e ~/Library/Application\ Support/SuperCollider/startup.scd
 
