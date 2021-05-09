@@ -17,7 +17,6 @@ Plug 'jdhao/better-escape.vim'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 Plug 'Rasukarusan/vim-block-paste'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'alec-gibson/nvim-tetris'
 call plug#end()
 
 " wrap supercollider post window
