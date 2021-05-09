@@ -6,16 +6,18 @@ syntax enable              " syntax highlighting
 " vim-plug
 call plug#begin('~/.config/nvim/bundle')
 
-" Plug 'SirVer/ultisnips'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'deoplete-plugins/deoplete-tag'
+"Plug 'SirVer/ultisnips'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'deoplete-plugins/deoplete-tag'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/calendar.vim'
 "Plug 'xarthurx/taskwarrior.vim'
 Plug 'jdhao/better-escape.vim'
 Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
-
+Plug 'Rasukarusan/vim-block-paste'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'alec-gibson/nvim-tetris'
 call plug#end()
 
 " wrap supercollider post window
@@ -26,6 +28,9 @@ call plug#end()
 
 " set path to deoplete
 " set runtimepath+=~/.config/nvim/bundle/deoplete.nvim
+
+" set path to python
+let g:python3_host_prog = "/usr/bin/python"
 
 " snips get to autocomplete
 " let g:deoplete#enable_at_startup = 1
@@ -68,7 +73,7 @@ set completeopt-=preview            " don't display scratch buffer for completio
 set formatoptions+=rj               " auto insert comments from insert mode,
                                     " remove comment leader when joining lines
 " appearance
-" set fillchars=                    " remove the fillchars from folds and splits
+set fillchars+=vert:\               " remove the fillchars from folds and splits
 " set listchars=tab:>-,trail:–,nbsp:• " custom list chars
 set nostartofline                   " keep the cursor at the current column when moving
 set scrolloff=4                     " keep a distance of from the cursor when scrolling
@@ -194,7 +199,11 @@ let g:scnvim_postwin_orientation = 'v'
 let g:scnvim_scdoc = 1
 
 " default is half the terminal size for vertical and a third for horizontal
-let g:scnvim_postwin_size = 16 
+let g:scnvim_postwin_size = 27
+" 49 
+
+" set the size for the post window scrollback buffer (-1 is infinitely large)
+let g:scnvim_postwin_scrollback = -1
 
 " remap hard stop
 " map <C-w> <plug>(scnvim-hard-stop)
@@ -218,10 +227,16 @@ augroup vimrc
 augroup END
 
 " resize windows with arrow-keys
-nnoremap <silent><C-h> :3wincmd <<cr>
-nnoremap <silent><C-l> :3wincmd ><cr>
-nnoremap <silent><C-k> :3wincmd +<cr>
-nnoremap <silent><C-j> :3wincmd -<cr>
+"nnoremap <silent><C-h> :3wincmd <<cr>
+"nnoremap <silent><C-l> :3wincmd ><cr>
+"nnoremap <silent><C-k> :3wincmd +<cr>
+"nnoremap <silent><C-j> :3wincmd -<cr>
+
+" resize windows with arrow-keys
+nnoremap <silent><left>  :3wincmd <<cr>
+nnoremap <silent><right> :3wincmd ><cr>
+nnoremap <silent><down>    :3wincmd +<cr>
+nnoremap <silent><up>  :3wincmd -<cr>
 
 " never enter Ex mode
 nnoremap Q <Nop>
