@@ -1,12 +1,12 @@
 (
-var sf64 = "Soundflower (64ch)";
+//var sf64 = "Soundflower (64ch)";
 var sf2 = "Soundflower (2ch)";
-var ka6 = "Komplete Audio 6 MK2";
-var madi = "MADIface USB (23949544)";
+//var ka6 = "Komplete Audio 6 MK2";
+//var madi = "MADIface USB (23949544)";
 //var inOut = Server.default.options;inOut.outDevice = sf64;inOut.inDevice = sf64; //force devices
-//var inOut = Server.default.options;inOut.outDevice = "sf2";inOut.inDevice = "sf2"; //force devices
-//var inOut = Server.default.options;inOut.outDevice = "ka6";inOut.inDevice = "ka6"; //force devices
-//var inOut = Server.default.options;inOut.outDevice = "madi";inOut.inDevice = "madi"; //force devices
+var inOut = Server.default.options;inOut.outDevice = sf2;inOut.inDevice = sf2; //force devices
+//var inOut = Server.default.options;inOut.outDevice = ka6;inOut.inDevice = ka6; //force devices
+//var inOut = Server.default.options;inOut.outDevice = madi;inOut.inDevice = madi; //force devices
 "killall scsynth".unixCmd;
 s.options.numBuffers = 1024 * 64; // increase if you need to load more samples
 s.options.numWireBufs = 128; // increase if you get "exception in GraphDef_Recv: exceeded number of interconnect buffers." message
