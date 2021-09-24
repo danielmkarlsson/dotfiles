@@ -1,4 +1,4 @@
-//
+// 
 //	Preferences set here will override factory (default) settings.
 //	This file can be reset using Oryoki > Preferences > Reset.
 //
@@ -6,7 +6,7 @@
 //
 {
 	// Do not touch!
-	"model_version" : "0.2.0",
+	"model_version" : "0.2.2",
 
 	// Allows Oryoki to download updates in background
 	"download_updates_in_background" : false,
@@ -14,8 +14,8 @@
 	// Set to false to hide the title bar by default
 	"show_title_bar" : false,
 
-	// Automatically adapt color theme (light/dark)
-	// when a webpage finished loading
+	// Automatically adapt color theme
+	// when a webpage finished loading 
 	"use_color_extraction" : true,
 
 	// Set to false to disable alt+drag to drag windows
@@ -32,9 +32,9 @@
 
 	// Set to false to disable web plugins by default
 	"enable_web_plugins" : true,
-
+	
 	// Set a custom web plugin path (absolute) here
-	"web_plugins_path" : "Users/danielmkarlsson/Library/Application Support/Google/Chrome/Default/Extensions",
+	"web_plugins_path" : "",
 
 	// Dimensions used for new windows
 	"default_window_width" : 800,
@@ -42,7 +42,7 @@
 
 	// Set to true to automatically clear caches
 	"clear_caches_on_launch" : false,
-
+	
 	// Set a path to save screenshots here
 	// If left blank, will save to downloads
 	"screenshots_save_path" : "",
@@ -51,8 +51,14 @@
 	// If left blank, will use the user's Downloads folder
 	"download_path" : "",
 
-	// Hide the status bar when recording
+	// Hide the status bar
 	"hide_status_while_recording" : true,
+
+	// Show the URL in the status bar on hover
+	"show_url_preview" : true,
+
+	// Request mobile sites
+	"request_mobile_site": false,
 
 	// h264 | prores
 	// mp4 is light and lossy
