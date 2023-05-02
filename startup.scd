@@ -34,10 +34,10 @@ s.latency = 0.3;
 //HID.postAvailable;
 //~myhid = HID.open( 1356, 3290 );
 //HIDFunc.trace(true);
-MIDIClient.init; // Untoggle this when you want to do MIDI
-MIDIIn.connectAll; // Let SC talk to all of your MIDI inputs
-m = MIDIOut.new(0); // default to using to using the first connected midi device
-m.latency = 0.3; // Proly good to match s.latency value here
+//MIDIClient.init; // uncomment this when you want to do MIDI
+//MIDIIn.connectAll; // let SC talk to all of your MIDI inputs
+//m = MIDIOut.new(0); // default to using to using the first connected midi device
+//m.latency = 0.3; // Proly good to match s.latency value here
 //MIDIFunc.trace(true); // trace all midi
 thisProcess.platform.recordingsDir = "/Users/danielmkarlsson/sc-rec/"; // Choose SC recordings directory
 
@@ -66,7 +66,7 @@ s.doWhenBooted{
 	}).add;
 };
 /*
-fork { // untoggle for multi client fun
+fork { // uncomment for multi client fun
 	var cond, runResponder;
 	s.options.bindAddress = "0.0.0.0";
 	s.options.maxLogins = 8;
