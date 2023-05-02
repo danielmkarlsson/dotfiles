@@ -74,7 +74,7 @@ fork { // uncomment for multi client fun
 	o.maxLogins = 12;
 	o.bindAddress = "0.0.0.0";
 	Server.default = s = Server.remote(\remote, NetAddr("169.254.66.79", 57110), o);
-	// replace "192.168.0.100" with host IP on all computers
+	// replace "169.254.66.79" with host IP on all computers
 	// ethernet connections are far superior in terms of stability compared to WiFi connections
 	cond = Condition({ s.serverRunning });
 	// 'signal' will allow the forked routine to advance
