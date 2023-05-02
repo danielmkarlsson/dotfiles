@@ -7,7 +7,7 @@ var ka6 = "Komplete Audio 6 MK2";
 var madi = "MADIface USB (23949544)";
 var id14 = "Audient iD14";
 var motu = "MOTU UltraLite";
-var inOut = Server.default.options; // shorten some server biz
+var inOut = Server.default.options; // shorten some server stuff
 //inOut.outDevice = "Soundflower (2ch)";inOut.inDevice = "Soundflower (2ch)"; // force devices
 //inOut.outDevice = sf2;inOut.inDevice = sf2; 
 //inOut.outDevice = sf64;inOut.inDevice = sf64;
@@ -16,8 +16,8 @@ var inOut = Server.default.options; // shorten some server biz
 //inOut.outDevice = madi;inOut.inDevice = madi;
 //inOut.outDevice = id14;inOut.inDevice = id14;
 //inOut.outDevice = motu;inOut.inDevice = motu;
-//s.volume = -0.01; // maybe you don't want to see the red light?
-s.options.blockSize = 64; // try increasing this to 512 if you get drouputs on long files
+//s.volume = -0.01; // uncomment if you don't want to see the red light which indicates limiting in SuperClean?
+s.options.blockSize = 64; // try increasing this up to 512 if you get drouputs on long files
 s.options.bindAddress = "0.0.0.0";
 s.options.numBuffers = 1024 * 64; // Increase this number if you need to load more samples.
 s.options.numWireBufs = 128; // Increase if "exception in GraphDef_Recv: exceeded number of interconnect buffers"
@@ -28,9 +28,9 @@ s.options.numOutputBusChannels = 2; // OUTPUT CHANNELS GO HERE
 //s.recSampleFormat = "float32";
 s.recSampleFormat = "int24";
 s.recHeaderFormat= "wav";
-s.options.numInputBusChannels = 0; // Set to hardware input channel size, if necessary
+s.options.numInputBusChannels = 0; // input channels can be zero if you only ever do output anyways
 s.latency = 0.3;
-//HID.findAvailable;
+//HID.findAvailable; // uncomment these lines when you want to do HID stuff
 //HID.postAvailable;
 //~myhid = HID.open( 1356, 3290 );
 //HIDFunc.trace(true);
@@ -50,8 +50,8 @@ if (\SCNvim.asClass.notNil) {
 
 QtGUI.palette = QPalette.dark; // switch to night mode for floating windows like the meter for example
 
-// A simple triangle wave synth in stereo with panning and a simple low pass filter
-// This synthDef was written by Mads Kjeldgaard and requires the sc3 plugins
+// a simple triangle wave synth in stereo with panning and a simple low pass filter
+// this synthDef was written by Mads Kjeldgaard and requires the sc3 plugins
 s.doWhenBooted{
 	SynthDef.new(\default, {
 		arg dur, attack=0.01, release=1.0,
