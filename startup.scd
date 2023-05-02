@@ -14,7 +14,7 @@ var inOut = Server.default.options; // shorten some server biz
 //inOut.outDevice = bl2;inOut.inDevice = bl2;
 //inOut.outDevice = ka6;inOut.inDevice = ka6;
 //inOut.outDevice = madi;inOut.inDevice = madi;
-inOut.outDevice = id14;inOut.inDevice = id14;
+//inOut.outDevice = id14;inOut.inDevice = id14;
 //inOut.outDevice = motu;inOut.inDevice = motu;
 //s.volume = -0.01; // maybe you don't want to see the red light?
 s.options.blockSize = 64; // try increasing this to 512 if you get drouputs on long files
