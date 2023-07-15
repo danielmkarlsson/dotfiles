@@ -14,18 +14,25 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/calendar.vim'
 "Plug 'xarthurx/taskwarrior.vim'
 Plug 'jdhao/better-escape.vim'
-Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
+Plug 'davidgranstrom/scnvim' 
 Plug 'Rasukarusan/vim-block-paste'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-lua/plenary.nvim' 
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'mkropat/vim-tt'
+Plug 'miyakogi/seiya.vim'
+Plug '/Users/danielmkarlsson/Documents/GitHub/replay.nvim'
 call plug#end()
 
-" wrap supercollider post window
 " autocmd FileType scnvim setlocal wrap
 
 " get dem snips
 "let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'scnvim-data']
 
-" set path to deoplete
+" see time pass
+" set statusline=[%{strftime('%d/%m/%y\ %H:%M\')}\]\ %=\
+
 " set runtimepath+=~/.config/nvim/bundle/deoplete.nvim
 
 " set path to python
@@ -33,6 +40,9 @@ let g:python3_host_prog = "/usr/bin/python"
 
 " snips get to autocomplete
 " let g:deoplete#enable_at_startup = 1
+
+" statusline update interval
+let g:scnvim_statusline_interval = 1
 
 " the statusline is made anew
 function! s:set_sclang_statusline()
@@ -52,10 +62,6 @@ augroup END
 " comment out stuff with this in scnvim
 autocmd FileType supercollider setlocal commentstring=//%s 
 
-" toggle colours in the post_window
-let g:scnvim_postwin_syntax_hl = 0
-
-" set directory^=$HOME/.vim/.swap//       " put all swap files in one place
 let mapleader="\<space>"                " set mapleader
 let maplocalleader=","
 set mouse=a                             " enable mouse
@@ -73,12 +79,12 @@ set formatoptions+=rj               " auto insert comments from insert mode,
                                     " remove comment leader when joining lines
 " appearance
 set fillchars+=vert:\               " remove the fillchars from folds and splits
-" set listchars=tab:>-,trail:–,nbsp:• " custom list chars
+"set listchars=tab:>-,trail:–,nbsp:• " custom list chars
 set nostartofline                   " keep the cursor at the current column when moving
 set scrolloff=4                     " keep a distance of from the cursor when scrolling
 set wrap                            " wrap words
 set linebreak                       " break at word boundries for wrapped text
-" set textwidth=80                    " be cool, old school 4:3 text width
+" set textwidth=80                  " be cool, old school 4:3 text width
 " set list                          " show unprintable characters
 " set relativenumber                " 0 on the line you are presently on
 
@@ -140,8 +146,8 @@ augroup END
 " ============
 
 " be able to navigate wrapped lines
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 
 inoremap jk <esc>
 inoremap § <esc> 
@@ -174,16 +180,16 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 nnoremap <C-c> <silent> <C-c>
 
 " single line
-nmap <C-s> <Plug>(scnvim-send-line)
-imap <C-s> <c-o><Plug>(scnvim-send-line)
-nmap <C-p> <Plug>(scnvim-postwindow-clear)
-imap <C-p> <c-o><Plug>(scnvim-postwindow-clear)
+"nmap <C-s> <Plug>(scnvim-send-line)
+"imap <C-s> <c-o><Plug>(scnvim-send-line)
+"nmap <C-p> <Plug>(scnvim-postwindow-clear)
+"imap <C-p> <c-o><Plug>(scnvim-postwindow-clear)
 
 " start scnvim w/ space+st
 nnoremap <leader>st :SCNvimStart<cr>
 
 " bring up the meter in scnvim w/ space+m
-nnoremap <leader>sm :call scnvim#sclang#send_silent('s.meter')<cr>
+" nnoremap <leader>sm :call scnvim#sclang#send_silent('s.meter')<cr>
 
 " boot the server w/ space+b
 nnoremap <leader>sb :call scnvim#sclang#send_silent('s.boot')<cr>
@@ -192,17 +198,17 @@ nnoremap <leader>sb :call scnvim#sclang#send_silent('s.boot')<cr>
 nnoremap <leader>sk :SCNvimRecompile<cr>
  
 " post window on the side or on the bottom
-let g:scnvim_postwin_orientation = 'v'
+"let g:scnvim_postwin_orientation = 'v'
 
 " set this variable to browse SuperCollider documentation in nvim (requires `pandoc`)
 let g:scnvim_scdoc = 1
 
 " default is half the terminal size for vertical and a third for horizontal
-let g:scnvim_postwin_size = 27
+"let g:scnvim_postwin_size = 27
 " 49 
 
 " set the size for the post window scrollback buffer (-1 is infinitely large)
-let g:scnvim_postwin_scrollback = -1
+"let g:scnvim_postwin_scrollback = -1
 
 " remap hard stop
 " map <C-w> <plug>(scnvim-hard-stop)
@@ -226,16 +232,10 @@ augroup vimrc
 augroup END
 
 " resize windows with arrow-keys
-"nnoremap <silent><C-h> :3wincmd <<cr>
-"nnoremap <silent><C-l> :3wincmd ><cr>
-"nnoremap <silent><C-k> :3wincmd +<cr>
-"nnoremap <silent><C-j> :3wincmd -<cr>
-
-" resize windows with arrow-keys
-nnoremap <silent><left>  :3wincmd <<cr>
+nnoremap <silent><left> :3wincmd <<cr>
 nnoremap <silent><right> :3wincmd ><cr>
-nnoremap <silent><down>    :3wincmd +<cr>
-nnoremap <silent><up>  :3wincmd -<cr>
+nnoremap <silent><down> :3wincmd +<cr>
+nnoremap <silent><up> :3wincmd -<cr>
 
 " never enter Ex mode
 nnoremap Q <Nop>
@@ -243,7 +243,7 @@ nnoremap Q <Nop>
 command! StartUp :e ~/Library/Application\ Support/SuperCollider/startup.scd
 
 " gcal in vim
-let g:calendar_google_calendar = 1
+"let g:calendar_google_calendar = 1
 
 " log all yank operations with a timestamp and store the contents in a file
 function! s:write_yank_to_log() abort
@@ -261,3 +261,83 @@ augroup yank_log
   autocmd!
   autocmd TextYankPost * call s:write_yank_to_log()
 augroup END
+
+lua << EOF
+require('replay').setup{}
+require('replay').register_injection('scnvim_eval', require('scnvim.editor').send_block)
+
+local scnvim = require 'scnvim'
+local map = scnvim.map
+local map_expr = scnvim.map_expr
+
+local function get_pandoc_path()
+  local sysname = require('scnvim.path').get_system()
+  if sysname == 'linux' then
+    return '/bin/pandoc'
+  elseif sysname == 'macos' then
+    return '/usr/local/bin/pandoc'
+  else
+    return '/opt/homebrew/bin/pandoc'
+  end
+end
+
+scnvim.setup({
+  keymaps = {
+    ['<C-s>'] = map('editor.send_line', {'i', 'n'}),
+    ['<C-e>'] = map(function()
+      require('replay').inject('scnvim_eval')
+      require('scnvim.editor').send_block()
+      end, {'i', 'n'}),
+    ['<CR>'] = map('postwin.toggle'),
+    ['<M-CR>'] = map('postwin.toggle', 'i'),
+    ['<C-p>'] = map('postwin.clear', {'n', 'i'}),
+    ['<C-k>'] = map('signature.show', {'n', 'i'}),
+    ['<F12>'] = map('sclang.hard_stop', {'n', 'x', 'i'}),
+    ['<leader>st'] = map('sclang.start'),
+    ['<leader>sk'] = map('sclang.recompile'),
+    ['<F1>'] = map_expr('s.boot'),
+    ['<leader>sm'] = map_expr('s.meter'),
+  },
+  editor = {
+    highlight = {
+    color = 'TermCursor', -- try 'IncSearch' for red highlights
+    },
+  },
+  documentation = {
+    cmd = '/usr/local/bin/pandoc',
+  },
+  postwin = {
+      size = 27,
+    float = {
+      enabled = false
+    },
+  },
+  editor = {
+    force_ft_supercollider = true,
+    highlight = {
+      color = 'TermCursor',
+      type = 'flash',
+      flash = {
+        duration = 100,
+        repeats = 2,
+      },
+      fade = {
+        duration = 375,
+      },
+    },
+}
+})
+
+local timer = vim.loop.new_timer()
+timer:start(1000, 1000, vim.schedule_wrap(function()
+  vim.cmd[[redrawstatus]]
+end))
+
+local replay = require'replay'
+      replay.setup{
+        output_path = "~/Documents/replay.nvim",
+      }
+      vim.keymap.set('n', '<F5>', function() replay.record('test') end)
+      vim.keymap.set('n', '<F7>', function() replay.play('test') end)
+
+EOF
