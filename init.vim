@@ -13,7 +13,6 @@ call plug#begin('~/.config/nvim/bundle')
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/calendar.vim'
-"Plug 'xarthurx/taskwarrior.vim'
 Plug 'jdhao/better-escape.vim'
 Plug 'davidgranstrom/scnvim' 
 Plug 'Rasukarusan/vim-block-paste'
@@ -23,16 +22,16 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'mkropat/vim-tt'
 Plug 'miyakogi/seiya.vim'
-Plug '/Users/danielmkarlsson/Documents/GitHub/replay.nvim'
+"Plug '/Users/danielmkarlsson/Documents/GitHub/replay.nvim'
 call plug#end()
 
-"autocmd FileType scnvim setlocal wrap
+" autocmd FileType scnvim setlocal wrap
 
 " get dem snips
 "let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'scnvim-data']
 
 " see time pass
-"set statusline=[%{strftime('%d/%m/%y\ %H:%M\')}\]\ %=\
+" set statusline=[%{strftime('%d/%m/%y\ %H:%M\')}\]\ %=\
 
 " set runtimepath+=~/.config/nvim/bundle/deoplete.nvim
 
@@ -65,6 +64,10 @@ let maplocalleader=","
 set mouse=a                             " enable mouse
 set nonumber
 
+aunmenu PopUp.How-to\ disable\ mouse
+aunmenu PopUp.-1-
+
+
 " editing
 set backspace=2                     " allow backspacing over indent, eol, and the start of an insert
 set virtualedit=onemore             " get at those pesky endbits (previously all)
@@ -91,6 +94,11 @@ augroup WrapLineInscdFile
     autocmd!
     autocmd FileType scd setlocal nowrap
     autocmd FileType scd setlocal nolinebreak
+augroup END
+
+augroup TextWidthInMdFile
+    autocmd!
+    autocmd FileType md setlocal textwidth=80
 augroup END
 
 " searching
@@ -209,10 +217,10 @@ augroup vimrc
 augroup END
 
 " resize windows with arrow-keys
-nnoremap <silent><left> :3wincmd <<cr>
-nnoremap <silent><right> :3wincmd ><cr>
-nnoremap <silent><down> :3wincmd +<cr>
-nnoremap <silent><up> :3wincmd -<cr>
+nnoremap <silent><left> :wincmd <<cr>
+nnoremap <silent><right> :wincmd ><cr>
+nnoremap <silent><down> :wincmd +<cr>
+nnoremap <silent><up> :wincmd -<cr>
 
 " never enter Ex mode
 nnoremap Q <Nop>
@@ -240,8 +248,7 @@ augroup yank_log
 augroup END
 
 lua << EOF
-require('replay').setup{}
-require('replay').register_injection('scnvim_eval', require('scnvim.editor').send_block)
+-- require('replay').register_injection('scnvim_eval', require('scnvim.editor').send_block)
 
 local scnvim = require 'scnvim'
 local map = scnvim.map
@@ -270,10 +277,10 @@ scnvim.setup({
 --      require('replay').inject('scnvim_eval')
 --      require('scnvim.editor').send_block()
 --      end, {'i', 'n'}),
-    ['<C-e>'] = {
-                      map('editor.send_block', {'i', 'n'}, {desc ="evaluate block"}),
-                      map('editor.send_selection', 'x', {desc ="evaluate selection"}),
-                  },
+     ['<C-e>'] = {
+                       map('editor.send_block', {'i', 'n'}, {desc ="evaluate block"}),
+                       map('editor.send_selection', 'x', {desc ="evaluate selection"}),
+                   },
     ['<CR>'] = map('postwin.toggle'),
     ['<M-CR>'] = map('postwin.toggle', 'i'),
     -- ['<C-p>'] = map('postwin.clear', {'n', 'i'}),
@@ -329,12 +336,12 @@ timer:start(500, 500, vim.schedule_wrap(function()
   vim.cmd[[redrawstatus]]
 end))
 
-local replay = require'replay'
-      replay.setup{
-        output_path = "~/Documents/replay.nvim",
-      }
-      vim.keymap.set('n', '<F5>', function() replay.record('test') end)
-      vim.keymap.set('n', '<F7>', function() replay.play('test') end)
+-- local replay = require'replay'
+--       replay.setup{
+--         output_path = "~/Documents/replay.nvim",
+--       }
+--       vim.keymap.set('n', '<F5>', function() replay.record('test') end)
+--       vim.keymap.set('n', '<F7>', function() replay.play('test') end)
 
 EOF
 
