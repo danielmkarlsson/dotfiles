@@ -53,18 +53,20 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
-  services.displayManager.defaultSession = "cinnamon";
+  #services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.desktopManager.cinnamon.enable = true;
+  #services.displayManager.defaultSession = "cinnamon";
 
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "se";
     xkb.variant = "nodeadkeys";
+    xkb.options = "caps:ctrl_modifier";
+    #useXkbConfig = true;
   };
 
   # Configure console keymap
@@ -116,6 +118,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.packageOverrides = pkgs: {
+    unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -123,6 +128,8 @@
   neovim
   git
   qjackctl
+  hhpc
+  unstable.obs-studio
   wget
   ];
 
