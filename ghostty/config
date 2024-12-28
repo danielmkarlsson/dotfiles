@@ -3,8 +3,11 @@ foreground = ffffff
 
 font-family = IBM Plex Mono Medium
 
-cursor-style-blink = false 
 cursor-style = block
+
+cursor-style-blink = false 
+
+shell-integration-features = no-cursor
 
 window-decoration = false
 
