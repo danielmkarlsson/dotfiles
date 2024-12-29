@@ -27,13 +27,17 @@ selection-invert-fg-bg = true
 
 confirm-close-surface = false
 
-#custom-shader = /Users/thoramm1/Downloads/crt.glsl 
+#custom-shader = /Users/danielmkarlsson/shaders/spa.glsl 
+#custom-shader = /Users/danielmkarlsson/shaders/bnw.glsl 
+#custom-shader = /Users/danielmkarlsson/shaders/crt.glsl
 
 macos-window-shadow = false
 
 desktop-notifications = false
 
 auto-update = off
+
+keybind = cmd+shift+,=reload_config
 
 palette = 0=#ffffff
 palette = 1=#ffffff
