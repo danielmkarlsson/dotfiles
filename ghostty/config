@@ -1,7 +1,8 @@
 background = 000
 foreground = fff
 
-font-family = IBM Plex Mono Medium
+font-family = JetBrainsMono Medium
+font-size = 15
 
 cursor-style = block
 
@@ -11,9 +12,9 @@ shell-integration-features = no-cursor
 
 window-decoration = false
 
-window-height = 54
+window-height = 46
 
-window-width = 183
+window-width = 163
 
 resize-overlay = never
 
@@ -29,9 +30,7 @@ confirm-close-surface = false
 
 clipboard-paste-protection = false
 
-#custom-shader = /Users/danielmkarlsson/shaders/spa.glsl 
-#custom-shader = /Users/danielmkarlsson/shaders/bnw.glsl 
-#custom-shader = /Users/danielmkarlsson/shaders/crt.glsl
+macos-secure-input-indication = false
 
 macos-window-shadow = false
 
