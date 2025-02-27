@@ -14,10 +14,10 @@ alias vim=nvim
 alias ..='cd ..'
 alias l="ls -l"
 alias fzf='fzf --color bw'
-alias dl='youtube-dl -o "~/Downloads/%(title)s.%(ext)s"'
-alias dl3='youtube-dl -x --audio-format=mp3 -o "~/Downloads/%(title)s.%(ext)s"' 
-alias dlw='youtube-dl -x --audio-format=wav -o "~/Downloads/%(title)s.%(ext)s"' 
-alias dl4='youtube-dl -f mp4 -o "~/Downloads/%(title)s.%(ext)s"'
+alias dl='yt-dlp -o "~/Downloads/%(title)s.%(ext)s"'
+alias dl3='yt-dlp -x --audio-format=mp3 -o "~/Downloads/%(title)s.%(ext)s"'
+alias dlw='yt-dlp -x --audio-format=wav -o "~/Downloads/%(title)s.%(ext)s"'
+alias dl4='yt-dlp -f mp4 -o "~/Downloads/%(title)s.%(ext)s"'
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 setopt MENU_COMPLETE
