@@ -1,0 +1,30 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
+
+/* hide tracking protection icon */
+#tracking-protection-icon-container {
+  display: none;
+}
+
+.bookmark-item[container] {
+  list-style-image: url("chrome://global/skin/dirListing/folder.png") !important;
+}
+
+/* hide 'overlink' messages */
+#statuspanel[type="overLink"] {opacity: 0 !important;}
+
+/* hide all status messages */
+#statuspanel {opacity: 0 !important;}
+
+/* hide bookmark star icon in address bar */
+#star-button-box {display: none !important;} 
+
+/* hide allTabs icon */
+#alltabs-button {
+    display: none !important;
+}
+
+/* Tab: selected colors */
+#tabbrowser-tabs .tabbrowser-tab[selected] .tab-content { background: #1b1a21 !important; }
+
+/* Tab: hovered colors */
+#tabbrowser-tabs .tabbrowser-tab:hover:not([selected]) .tab-content { background: #1b1a21 !important; }
